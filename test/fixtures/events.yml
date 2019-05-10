@@ -2,16 +2,14 @@
 
 one:
   title: MyString
-  date: MyString
-  start_time: MyString
-  end_time: MyString
+  start_time: 2019-05-10 19:03:08
+  end_time: 2019-05-10 19:03:08
   location: MyString
-  talks: MyString
+  talks: MyText
 
 two:
   title: MyString
-  date: MyString
-  start_time: MyString
-  end_time: MyString
+  start_time: 2019-05-10 19:03:08
+  end_time: 2019-05-10 19:03:08
   location: MyString
-  talks: MyString
+  talks: MyText
