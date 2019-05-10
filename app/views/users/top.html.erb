@@ -1,5 +1,9 @@
 <h1>LT会</h1>
 <% if current_user %>
   <p>ログインに成功しました</p>
+  <%= link_to "my page", user_path(id: current_user) %>
+  <%= link_to "LT一覧", events_path %>
   <%= link_to "Log out", logout_path, method: :delete %>
+  <% else %>
+  <%= link_to "Log in", login_path %>
 <% end %>
