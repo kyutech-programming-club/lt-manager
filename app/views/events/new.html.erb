@@ -1,0 +1,4 @@
+<h1>LT一覧</h1>
+<% @events.each do |event| %>
+  <%= link_to(event.title,  event_path(id: event.id)) %>
+<% end %>
