@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  get 'talks/show'
   root "users#top"
   get "login" => "sessions#new"
   post "login" => "sessions#create"
