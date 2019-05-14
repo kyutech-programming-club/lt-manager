@@ -1,2 +1,4 @@
-<h1>Talks#show</h1>
-<p>Find me in app/views/talks/show.html.erb</p>
+<%= @talk.title %>
+
+<%= link_to("スライド", @talk.slide_url)  %>
+<%= link_to("デモ", @talk.movie_url) %>

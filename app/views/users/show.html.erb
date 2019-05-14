@@ -1,5 +1,8 @@
 <h1>マイページ</h1>
   <%= @user.name %>
+<% @talks.each do |talk| %>
+  <%= link_to(talk.title,  talk_path(id: talk.id)) %>
+<% end %>
 
 
 
