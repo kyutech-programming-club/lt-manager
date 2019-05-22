@@ -1,0 +1,11 @@
+<h1>新規トーク作成</h1>
+
+<%= form_with model: @talk do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :slide_url%>
+  <%= f.password_field :slide_url %>
+  <%= f.label :movie_url %>
+  <%= f.password_field :movie_url %>
+  <%= f.submit %>
+<% end %>
