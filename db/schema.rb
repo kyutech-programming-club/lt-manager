@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_22_084255) do
+ActiveRecord::Schema.define(version: 2019_05_22_121225) do
 
   create_table "events", force: :cascade do |t|
     t.string "title"
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 2019_05_22_084255) do
     t.text "talks"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "talk_id"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["talk_id"], name: "index_reviews_on_talk_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "talks", force: :cascade do |t|

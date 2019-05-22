@@ -1,6 +1,8 @@
 class TalksController < ApplicationController
   def show
     @talk = Talk.find(params[:id])
+    @review = Review.new(user_id: current_user.id, talk_id: @talk.id)
+    @reviews =Review.where(talk_id: @talk.id)
   end
 
   def new

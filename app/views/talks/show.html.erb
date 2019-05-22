@@ -4,3 +4,16 @@
 <%= link_to("スライド", @talk.slide_url)  %>
 <%= link_to("デモ", @talk.movie_url) %>
 <%= link_to(@talk.user.name, user_path(@talk.user)) %>
+<br>
+<p>感想</p>
+<%=  form_with url: talk_reviews_path(talk_id: @talk.id) do |f|%>
+  <%= f.label :comment %>
+  <%= f.text_area :comment %>
+  <%= f.submit %>
+<% end %>
+
+<ul>
+<% @reviews.each do |review| %>
+  <li><%= review.comment %></li>
+<% end %>
+</ul>

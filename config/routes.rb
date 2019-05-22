@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   delete "logout" => "sessions#destroy"
   resources :users
   resources :events, shallow: true do
-    resources :talks
+    resources :talks, shallow: true do
+      resources :reviews
+    end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
