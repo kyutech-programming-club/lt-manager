@@ -8,19 +8,22 @@ class TalksController < ApplicationController
   end
 
   def create
-    @talk = Talk.new(talk_params)
+    event = Event.find(params[:event_id])
+    @talk = event.talks.build(talk_params)
+    @talk.user_id = current_user.id
     if @talk.save
-      redirect_to event_path(id:@talk.event_id)
+      redirect_to event
     else
-      render new_talk_path
+      render new_event_talk_path(event_id: event.id)
     end
   end
 
   private
 
   def talk_params
-    params.require(:talk).permit(:title, :slide_url, :movie_url, )
+    params.permit(:title, :slide_url, :movie_url)
   end
+
 
 end
 

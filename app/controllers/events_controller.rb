@@ -9,7 +9,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @talks = current_user.talks
+    @talks = Talk.where(event_id: @event.id)
 
   end
 
