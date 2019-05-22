@@ -1,0 +1,6 @@
+<%= @talk.title %>
+
+<%= link_to(@talk.event.title, event_path(@talk.event)) %>
+<%= link_to("スライド", @talk.slide_url)  %>
+<%= link_to("デモ", @talk.movie_url) %>
+<%= link_to(@talk.user.name, user_path(@talk.user)) %>

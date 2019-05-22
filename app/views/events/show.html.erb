@@ -1,3 +1,8 @@
 <%= @event.title %>
 
+<% @talks.each do |talk| %>
+  <%= link_to(talk.title,  talk_path(id: talk.id)) %>
+<% end %>
+
+<%= link_to("新規トーク作成", new_event_talk_path(event_id: @event.id)) %>
 <%= link_to("一覧へもどる", events_path) %>

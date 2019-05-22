@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      log_in @user
       redirect_to root_path
     else
       render new_user_path
@@ -23,6 +24,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @talks = @user.talks
   end
 
 
