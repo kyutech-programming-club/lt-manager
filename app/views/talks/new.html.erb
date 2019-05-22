@@ -1,6 +1,7 @@
 <h1>新規トーク作成</h1>
 
-<%= form_with url: event_talks_url(event_id: params[:event_id]) do |f| %>
+<%= form_with url: event_talks_url(event_id: params[:event_id]), local: true do |f| %>
+  <%= inform_validation_error @talk %>
   <%= f.label :title %>
   <%= f.text_field :title %>
   <%= f.label :slide_url%>
