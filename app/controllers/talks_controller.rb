@@ -1,4 +1,7 @@
 class TalksController < ApplicationController
+  before_action :authenticate_user
+
+
   def show
     @talk = Talk.find(params[:id])
     @review = Review.new(user_id: current_user.id, talk_id: @talk.id)

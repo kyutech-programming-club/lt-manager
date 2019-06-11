@@ -1,8 +1,32 @@
-<%= @event.title %>
+<h2><%= @event.title %></h2>
+<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <%= link_to("新規トーク作成", new_event_talk_path(event_id: @event.id), class:"nav-link")  %>
+  </li>
+  <li class="nav-item">
+    <%= link_to("一覧へもどる", events_path, class:"nav-link") %>
+  </li>
+</ul>
 
-<% @talks.each do |talk| %>
-  <%= link_to(talk.title,  talk_path(id: talk.id)) %>
+
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>タイトル</th>
+      <th>名前</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @talks.each do |talk| %>
+   <tr>
+     <td>
+       <%= link_to(talk.title,  talk_path(id: talk.id)) %>
+     </td>
+     <td>
+       <%= link_to(talk.user.name, user_path(talk.user)) %>
+     </td>
+   </tr>
+    </tbody>
+  </table>
+
 <% end %>
-
-<%= link_to("新規トーク作成", new_event_talk_path(event_id: @event.id)) %>
-<%= link_to("一覧へもどる", events_path) %>

@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user, {only: [:show, :create]}
+
+
   def top
 
   end
