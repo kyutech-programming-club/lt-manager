@@ -3,4 +3,6 @@ class User < ApplicationRecord
   has_many :talks
 
   validates :name, presence: true , uniqueness: true
+
+
 end

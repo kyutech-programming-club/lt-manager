@@ -4,7 +4,7 @@
 <%= link_to("スライド", @talk.slide_url)  %>
 <%= link_to("デモ", @talk.movie_url) %>
 <%= link_to(@talk.user.name, user_path(@talk.user)) %>
-<br>
+<br><br><br>
 <p>感想</p>
 <%=  form_with url: talk_reviews_path(talk_id: @talk.id) do |f|%>
   <%= f.label :comment %>
@@ -14,6 +14,11 @@
 
 <ul>
 <% @reviews.each do |review| %>
-  <li><%= review.comment %></li>
+  <% if current_user.id == review.user_id %>
+    <li><%= review.comment %>
+      <%= link_to("削除", review, method: :delete) %></li>
+  <% else %>
+    <li><%= review.comment %></li>
+  <% end %>
 <% end %>
 </ul>

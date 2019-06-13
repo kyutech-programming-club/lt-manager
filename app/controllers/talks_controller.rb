@@ -23,6 +23,8 @@ class TalksController < ApplicationController
     end
   end
 
+
+
   private
 
   def talk_params

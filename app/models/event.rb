@@ -11,4 +11,6 @@ class Event < ApplicationRecord
     errors.add(:end_time, "の日付を正しく記入してください。") unless
         self.start_time < self.end_time
   end
+
+
 end
