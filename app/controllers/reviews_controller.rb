@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user
+
 
   def create
     talk = Talk.find(params[:talk_id])
@@ -12,4 +14,11 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def destroy
+    review = Review.find(params[:id])
+    talk = review.talk
+    review.destroy
+    flash[:success] = "コメントを削除しました"
+    redirect_to talk
+  end
 end

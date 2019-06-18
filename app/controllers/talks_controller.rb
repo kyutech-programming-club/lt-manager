@@ -1,4 +1,7 @@
 class TalksController < ApplicationController
+  before_action :authenticate_user
+
+
   def show
     @talk = Talk.find(params[:id])
     @review = Review.new(user_id: current_user.id, talk_id: @talk.id)
@@ -6,19 +9,21 @@ class TalksController < ApplicationController
   end
 
   def new
-
+    @talk = Talk.new
   end
 
   def create
     event = Event.find(params[:event_id])
-    talk = event.talks.build(talk_params)
-    talk.user_id = current_user.id
-    if talk.save
+    @talk = event.talks.build(talk_params)
+    @talk.user_id = current_user.id
+    if @talk.save
       redirect_to event
     else
-      render new_event_talk_path(event_id: event.id)
+      render :new
     end
   end
+
+
 
   private
 

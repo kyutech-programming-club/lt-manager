@@ -1,12 +1,13 @@
 <h1>新規作成</h1>
 
-<%= form_with model: @event do |f| %>
+<%= form_with model: @event, local: true do |f| %>
+  <%= inform_validation_error @event %>
   <%= f.label :title %>
-  <%= f.text_field :title %>
+  <%= f.text_field :title %><br>
   <%= f.label :start_time %>
-  <%= f.datetime_select :start_time, {} %>
+  <%= f.datetime_select :start_time, {} %><br>
   <%= f.label :end_time %>
-  <%= f.datetime_select :end_time, {} %>
+  <%= f.datetime_select :end_time, {} %><br>
   <%= f.label :location %>
   <%= f.text_field :location %>
   <%= f.submit %>
