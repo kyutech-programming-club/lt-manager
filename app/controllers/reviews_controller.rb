@@ -18,7 +18,6 @@ class ReviewsController < ApplicationController
     review = Review.find(params[:id])
     talk = review.talk
     review.destroy
-    flash[:success] = "コメントを削除しました"
-    redirect_to talk
+    redirect_to talk, success: "コメントを削除しました"
   end
 end

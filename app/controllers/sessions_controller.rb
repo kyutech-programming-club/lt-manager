@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       log_in user
       redirect_to root_path
     else
-      render 'new'
+      redirect_to login_path, danger: "なんか間違ってへん？もしかしてスパイ？"
     end
   end
 

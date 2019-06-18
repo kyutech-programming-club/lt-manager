@@ -3,13 +3,13 @@
 <%= form_with model: @event, local: true do |f| %>
   <%= inform_validation_error @event %>
   <%= f.label :title %>
-  <%= f.text_field :title %><br>
+  <%= f.text_field :title, class:"form-control" %>
   <%= f.label :start_time %>
   <%= f.datetime_select :start_time, {} %><br>
   <%= f.label :end_time %>
-  <%= f.datetime_select :end_time, {} %><br>
+  <%= f.datetime_select :end_time, {}%><br>
   <%= f.label :location %>
-  <%= f.text_field :location %>
-  <%= f.submit %>
+  <%= f.text_field :location, class:"form-control" %>
+  <%= f.submit class: "btn btn-primary"%>
 <% end %>
 
