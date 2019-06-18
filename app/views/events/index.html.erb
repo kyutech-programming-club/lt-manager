@@ -5,6 +5,7 @@
   <tr>
     <th>タイトル</th>
     <th>開催日</th>
+    <th>会場</th>
   </tr>
   </thead>
   <tbody>
@@ -14,10 +15,14 @@
         <%= link_to(event.title,  event_path(id: event.id)) %>
       </td>
       <td>
-        <p><%= event.start_time %>~<%= event.end_time%></p>
+        <p><%= event.start_time.strftime("%Y-%m-%d %H:%M:%S") %>~<%= event.end_time.strftime("%Y-%m-%d %H:%M:%S")%></p>
+      </td>
+      <td>
+        <%= event.location %>
       </td>
     </tr>
+  <% end %>
     </tbody>
     </table>
 
-<% end %>
+

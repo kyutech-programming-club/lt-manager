@@ -1,12 +1,12 @@
 <h1>新規トーク作成</h1>
 
-<%= form_with url: event_talks_url(event_id: params[:event_id]), local: true do |f| %>
+<%= form_with model: @talk, url: event_talks_url(event_id: params[:event_id]), local: true do |f| %>
   <%= inform_validation_error @talk %>
   <%= f.label :title %>
-  <%= f.text_field :title %>
+  <%= f.text_field :title, class:"form-control" %>
   <%= f.label :slide_url%>
-  <%= f.text_field :slide_url %>
+  <%= f.text_field :slide_url, class:"form-control" %>
   <%= f.label :movie_url %>
-  <%= f.text_field :movie_url %>
-  <%= f.submit %>
+  <%= f.text_field :movie_url, class:"form-control" %>
+  <%= f.submit class: "btn btn-primary" %>
 <% end %>

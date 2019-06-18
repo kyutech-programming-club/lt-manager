@@ -23,12 +23,22 @@ class TalksController < ApplicationController
     end
   end
 
+  def edit
+    @talk = Talk.find(params[:id])
+  end
+
+  def update
+    @talk = Talk.find(params[:id])
+    @talk.update(talk_params)
+    redirect_to talk_path(@talk)
+  end
+
 
 
   private
 
   def talk_params
-    params.permit(:title, :slide_url, :movie_url)
+    params.require(:talk).permit(:title, :slide_url, :movie_url)
   end
 
 

@@ -17,7 +17,7 @@ module SessionsHelper
 
     if current_user == nil
 
-      redirect_to root_path, success: "ログインしろ"
+      redirect_to root_path, danger: "ログインしろ"
 
     end
 
