@@ -1,6 +1,6 @@
 class TalksController < ApplicationController
   before_action :authenticate_user
-
+  before_action :correct_user, only: %i[edit update]
 
   def show
     @talk = Talk.find(params[:id])
