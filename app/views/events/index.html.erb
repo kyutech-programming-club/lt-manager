@@ -15,7 +15,12 @@
         <%= link_to(event.title,  event_path(id: event.id)) %>
       </td>
       <td>
-        <p><%= event.start_time.strftime("%Y-%m-%d %H:%M:%S") %>~<%= event.end_time.strftime("%Y-%m-%d %H:%M:%S")%></p>
+        <%= event.start_time.strftime("%Y-%m-%d %H:%M:%S") %>~
+        <% if event.end_time.to_date == event.start_time.to_date %>
+            <%= event.end_time.strftime("%H:%M:%S")%>
+          <% else %>
+            <%= event.end_time.strftime("%Y-%m-%d %H:%M:%S")%>
+          <% end %>
       </td>
       <td>
         <%= event.location %>

@@ -20,6 +20,6 @@ module SessionsHelper
       redirect_to root_path, danger: "ログインしろ"
 
     end
-
   end
+
 end
