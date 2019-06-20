@@ -1,3 +1,16 @@
+<script>
+    $(function(){
+        $("#picker").bootstrapMaterialDatePicker({
+            weekStart:0,
+            format:"YYYY-MM-DD HH:mm"
+        });
+        $("#picker2").bootstrapMaterialDatePicker({
+            weekStart:0,
+            format:"YYYY-MM-DD HH:mm"
+        });
+    });
+</script>
+
 <h1>新規作成</h1>
 
 <%= form_with model: @event, local: true do |f| %>
@@ -5,9 +18,9 @@
   <%= f.label :title %>
   <%= f.text_field :title, class:"form-control" %>
   <%= f.label :start_time %>
-  <%= f.datetime_select :start_time, {} %><br>
+  <%= f.text_field :start_time, id: "picker" %><br>
   <%= f.label :end_time %>
-  <%= f.datetime_select :end_time, {}%><br>
+  <%= f.text_field :end_time, id: "picker2"%><br>
   <%= f.label :location %>
   <%= f.text_field :location, class:"form-control" %>
   <%= f.submit class: "btn btn-primary"%>

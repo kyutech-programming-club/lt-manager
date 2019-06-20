@@ -1,25 +1,27 @@
-<ul class="nav">
-  <li class="nav-item">
-  <h1><%= @talk.title %></h1>
-  </li>
+<h1><%= @talk.title %></h1>
 <% if current_user.id == @talk.user_id %>
-    <li class="nav-item">
   <%= link_to("へんしゅーーー(編集)", edit_talk_path) %>
-    </li>
 <% end %>
-</ul>
+
 <p>(<%= link_to(@talk.event.title, event_path(@talk.event)) %>)</p>
-<%= link_to("スライド", @talk.slide_url) %>
-<%= link_to("デモ", @talk.movie_url) %>
+<% if @talk.slide_url == "" %>
+  <%= link_to("スライド", "https://www.google.com/search?q=%E3%82%B9%E3%83%A9%E3%82%A4%E3%83%89+%E4%BD%9C%E6%88%90+%E3%82%B3%E3%83%84&oq=%E3%82%B9%E3%83%A9%E3%82%A4%E3%83%89%E3%80%80%E4%BD%9C%E6%88%90&aqs=chrome.2.69i57j0l5.8181j0j8&sourceid=chrome&ie=UTF-8") %>
+<% else %>
+  <%= link_to("スライド", @talk.slide_url) %>
+<% end %>
+<% if @talk.movie_url == "" %>
+  <%= link_to("デモ", "https://www.google.com/search?ei=HQYLXbOPDpji-AbRxraAAg&q=%E3%81%A7%E3%82%82%E3%81%A7%E3%82%82%E3%81%A7%E3%82%82%E3%81%A7%E3%82%82%E3%81%9D%E3%82%93%E3%81%AA%E3%81%AE%E9%96%A2%E4%BF%82%E3%81%AD%E3%81%87&oq=%E3%81%A7%E3%82%82%E3%81%A7%E3%82%82&gs_l=psy-ab.1.4.0l6j0i4l2.301225.304388..307489...2.0..0.105.1006.10j1......0....1..gws-wiz.......35i39j0i131i4j0i4i30j0i4i10i30.gLCIbFG3eDg") %>
+<% else %>
+  <%= link_to("デモ", @talk.movie_url) %>
+<% end %>
 <p>発表者:<%= link_to(@talk.user.name, user_path(@talk.user)) %></p>
 
 <br><br>
 <p>感想</p>
 <% unless current_user.id == @talk.user_id %>
 <%=  form_with url: talk_reviews_path(talk_id: @talk.id) do |f|%>
-  <%= f.label :comment %>
-  <%= f.text_area :comment %>
-  <%= f.submit %>
+  <%= f.text_area :comment, style: "width: 400px, " %>
+  <%= f.submit "投稿", class: "btn btn-primary" %>
 <% end %>
 <% end %>
 <ul>
