@@ -1,0 +1,9 @@
+<h1><%= @user.name %></h1><br>
+  <h2>発表一覧</h2>
+<% @talks.each do |talk| %>
+  <p><%= link_to(talk.title,  talk_path(id: talk.id)) %>
+  (<%= link_to(((talk.event.title)), event_path(id: talk.event_id)) %>)</p>
+<% end %>
+
+
+

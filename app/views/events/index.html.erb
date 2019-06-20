@@ -1,0 +1,33 @@
+<h1>LT一覧</h1>
+<%= link_to("新規作成", new_event_path) %>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>タイトル</th>
+    <th>開催日</th>
+    <th>会場</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @events.each do |event| %>
+    <tr>
+      <td>
+        <%= link_to(event.title,  event_path(id: event.id)) %>
+      </td>
+      <td>
+        <%= event.start_time.strftime("%Y-%m-%d %H:%M:%S") %>~
+        <% if event.end_time.to_date == event.start_time.to_date %>
+            <%= event.end_time.strftime("%H:%M:%S")%>
+          <% else %>
+            <%= event.end_time.strftime("%Y-%m-%d %H:%M:%S")%>
+          <% end %>
+      </td>
+      <td>
+        <%= event.location %>
+      </td>
+    </tr>
+  <% end %>
+    </tbody>
+    </table>
+
+

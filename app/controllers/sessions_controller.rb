@@ -6,9 +6,9 @@ class SessionsController < ApplicationController
     user = User.find_by(name: params[:name])
     if user && user.authenticate(params[:password])
       log_in user
-      redirect_to root_path
+      redirect_to root_path, success: "ようこそ！陰キャの" + user.name + "!"
     else
-      render 'new'
+      redirect_to login_path, danger: "なんか間違ってへん？もしかしてスパイ？"
     end
   end
 
