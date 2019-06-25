@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user, {only: [:show]}
+  before_action :authenticate_user, only: %i[show index]
 
 
   def top
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def index
-
+    @users = User.all
   end
 
   def show
