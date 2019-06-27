@@ -44,6 +44,13 @@ class TalksController < ApplicationController
     params.require(:talk).permit(:title, :slide_url, :movie_url)
   end
 
+  def correct_user
+    talk = Talk.find(params[:id])
+    user = talk.user
+    return if user == current_user
+
+    redirect_to root_path, danger: "特定しますた、プロ研追放します"
+  end
 
 end
 
