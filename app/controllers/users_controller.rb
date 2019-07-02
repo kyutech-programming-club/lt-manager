@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user, only: %i[show index]
-
+  before_action :correct_user, only: %i[edit update]
 
   def top
 
@@ -30,6 +30,18 @@ class UsersController < ApplicationController
     @talks = @user.talks
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to user_path(@user)
+    else
+      render :edit
+    end
+  end
 
   private
 
@@ -37,4 +49,10 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :password, :password_confirmation)
   end
 
+  def correct_user
+    user = User.find(params[:id])
+    return if user == current_user
+
+    redirect_to root_path, danger: "特定しますた、プロ研追放します"
+  end
 end
