@@ -1,4 +1,7 @@
 <h1><%= @user.name %></h1><br>
+<div class="gyogae">
+  <%= @user.status %>
+</div><br>
 <ul class="nav justify-content-end">
   <% if current_user.id == @user.id %>
   <li class="nav-item">
@@ -21,7 +24,7 @@
         <%= link_to(talk.title,  talk_path(id: talk.id)) %>
       </td>
       <td>
-        <%= link_to((talk.event.title), event_path(id: talk.event_id)) %>
+        <%= link_to(talk.event.title, event_path(id: talk.event_id)) %>
       </td>
     </tr>
   <% end %>

@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 2019_07_02_090916) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "remember_digest"
     t.text "status"
   end
 
