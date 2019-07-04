@@ -1,7 +1,7 @@
 <h2><%= @event.title %></h2>
 <ul class="nav justify-content-end">
   <li>
-    <% if current_user.admin == true %>
+    <% if current_user.admin %>
       <%= button_to("シャッフル", event_shuffle_path(@event), class: "btn btn-success") %>
     <% end %>
   </li>
