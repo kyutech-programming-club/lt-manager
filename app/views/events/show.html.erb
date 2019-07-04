@@ -1,5 +1,10 @@
 <h2><%= @event.title %></h2>
 <ul class="nav justify-content-end">
+  <li>
+    <% if current_user.admin == true %>
+      <%= button_to("シャッフル", event_shuffle_path(@event), class: "btn btn-success") %>
+    <% end %>
+  </li>
   <li class="nav-item" >
     <%= link_to("イベント編集", edit_event_path(@event), class:"nav-link") %>
   </li>
@@ -10,7 +15,7 @@
     <%= link_to("一覧へもどる", events_path, class:"nav-link") %>
   </li>
 </ul>
-<%= button_to("シャッフル", event_shuffle_path(@event)) %>
+
   <table class="table table-hover">
     <thead>
     <tr>

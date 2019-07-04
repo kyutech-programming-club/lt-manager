@@ -11,7 +11,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @talks = Talk.where(event_id: @event.id).order("sequence")
+    @talks = Talk.where(event_id: @event.id).order(:sequence)
 
   end
 

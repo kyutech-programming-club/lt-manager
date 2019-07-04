@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   delete "logout" => "sessions#destroy"
   resources :users
   resources :events, shallow: true do
-    get "shuffle" => "events#shufflea"
     post "shuffle" => "events#shuffle"
     resources :talks, shallow: true do
       resources :reviews
