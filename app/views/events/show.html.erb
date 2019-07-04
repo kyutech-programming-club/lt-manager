@@ -10,7 +10,7 @@
     <%= link_to("一覧へもどる", events_path, class:"nav-link") %>
   </li>
 </ul>
-
+<%= button_to("シャッフル", event_shuffle_path(@event)) %>
   <table class="table table-hover">
     <thead>
     <tr>

@@ -11,7 +11,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @talks = Talk.where(event_id: @event.id)
+    @talks = Talk.where(event_id: @event.id).order("sequence")
 
   end
 
@@ -40,6 +40,17 @@ class EventsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def shuffle
+    talks = Talk.where(event_id: params[:event_id])
+    t_length = talks.length
+    seq = (1..t_length).to_a.shuffle
+    talks.each_with_index do |f, i|
+      f.sequence = seq[i]
+      f.save
+    end
+    redirect_to event_path(id: params[:event_id])
   end
 
   private
