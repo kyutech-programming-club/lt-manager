@@ -1,6 +1,6 @@
 class TalksController < ApplicationController
   before_action :authenticate_user
-  before_action :correct_user, only: %i[edit update]
+  before_action :correct_user, only: %i[edit update destroy]
 
   def show
     @talk = Talk.find(params[:id])
@@ -30,12 +30,17 @@ class TalksController < ApplicationController
   def update
     @talk = Talk.find(params[:id])
     if @talk.update(talk_params)
-      redirect_to talk_path(@talk)
+      redirect_to talk_path(@talk), success: "変更完了！"
     else
       render :edit
       end
   end
 
+  def destroy
+    talk = Talk.find(params[:id])
+    talk.destroy
+    redirect_to event_path(id: talk.event_id), success: "また発表してね！"
+  end
 
 
   private

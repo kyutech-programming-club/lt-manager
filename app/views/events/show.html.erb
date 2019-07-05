@@ -1,4 +1,11 @@
 <h2><%= @event.title %></h2>
+<p><b>開催日時</b> : <%= @event.start_time.strftime("%Y-%m-%d %H:%M:%S") %>~
+<% if @event.end_time.to_date == @event.start_time.to_date %>
+  <%= @event.end_time.strftime("%H:%M:%S")%>
+<% else %>
+  <%= @event.end_time.strftime("%Y-%m-%d %H:%M:%S")%>
+<% end %><br>
+  <b>会場</b> : <%= @event.location %></p>
 <ul class="nav justify-content-end">
   <li>
     <% if current_user.admin %>
@@ -30,7 +37,7 @@
        <%= link_to(talk.title,  talk_path(id: talk.id)) %>
      </td>
      <td>
-       <%= link_to(talk.user.name, user_path(talk.user)) %>
+       <%= link_to((current_user.id == talk.user_id)?"あなた":talk.user.name, user_path(talk.user)) %>
      </td>
    </tr>
     <% end %>
