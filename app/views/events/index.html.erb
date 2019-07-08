@@ -6,6 +6,7 @@
     <th>タイトル</th>
     <th>開催日</th>
     <th>会場</th>
+    <th>参加者</th>
   </tr>
   </thead>
   <tbody>
@@ -24,6 +25,9 @@
       </td>
       <td>
         <%= event.location %>
+      </td>
+      <td>
+        <%= UserEvent.where(event_id: event.id).count %>
       </td>
     </tr>
   <% end %>

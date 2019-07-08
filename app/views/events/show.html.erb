@@ -54,3 +54,19 @@
     </tbody>
   </table>
 
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>参加者</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @joins.each do |member| %>
+    <tr>
+      <td>
+        <%= link_to(member.user.name,  user_path(id: member.user.id)) %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
