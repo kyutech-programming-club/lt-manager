@@ -81,6 +81,8 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
+    data-confirm-modal (1.6.2)
+      railties (>= 3.0)
     erubi (1.8.0)
     execjs (2.7.0)
     ffi (1.10.0)
@@ -226,6 +228,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   chromedriver-helper
   coffee-rails (~> 4.2)
+  data-confirm-modal
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)

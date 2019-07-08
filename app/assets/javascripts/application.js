@@ -16,4 +16,5 @@
 //= require activestorage
 //= require turbolinks
 //= require bootstrap
+// = require data-confirm-modal
 //= require_tree .
