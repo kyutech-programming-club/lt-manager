@@ -6,18 +6,17 @@ class EventsController < ApplicationController
   end
 
   def index
-    @events = Event.all
+    @events = Event.all.order(:id)
   end
 
   def show
     @event = Event.find(params[:id])
     @talks = Talk.where(event_id: @event.id).order(:sequence)
-
+    @joins = UserEvent.where(event_id: params[:id])
   end
 
   def new
     @event = Event.new
-
   end
 
   def create
@@ -52,6 +51,21 @@ class EventsController < ApplicationController
     end
     redirect_to event_path(id: params[:event_id])
   end
+
+  def join
+    join = UserEvent.new(user_id: current_user.id, event_id: params[:event_id])
+    join.save
+    redirect_to event_path(id: params[:event_id])
+  end
+
+  def drop
+    join = UserEvent.find_by(user_id: current_user.id, event_id: params[:event_id])
+    talk = Talk.find_by(user_id: current_user.id, event_id: params[:event_id])
+    join.destroy
+    talk.destroy
+    redirect_to event_path(id: params[:event_id])
+  end
+
 
   private
 
