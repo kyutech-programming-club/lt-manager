@@ -60,9 +60,11 @@ class EventsController < ApplicationController
 
   def drop
     join = UserEvent.find_by(user_id: current_user.id, event_id: params[:event_id])
-    talk = Talk.find_by(user_id: current_user.id, event_id: params[:event_id])
     join.destroy
+    talk = Talk.find_by(user_id: current_user.id, event_id: params[:event_id])
+    unless talk.blank?
     talk.destroy
+    end
     redirect_to event_path(id: params[:event_id])
   end
 
