@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
   has_many :talks
-
+  has_many :user_events
+  has_many :users, through: :user_events
   validates :title, presence: true
   validates :start_time, presence: true
   validates :end_time, presence: true

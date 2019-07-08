@@ -1,16 +1,33 @@
 <h2><%= @event.title %></h2>
+<p><b>開催日時</b> : <%= @event.start_time.strftime("%Y-%m-%d %H:%M:%S") %>~
+<% if @event.end_time.to_date == @event.start_time.to_date %>
+  <%= @event.end_time.strftime("%H:%M:%S")%>
+<% else %>
+  <%= @event.end_time.strftime("%Y-%m-%d %H:%M:%S")%>
+<% end %><br>
+  <b>会場</b> : <%= @event.location %></p>
+
 <ul class="nav justify-content-end">
+  <% if UserEvent.where(user_id: current_user.id, event_id: params[:id]).empty? %>
   <li>
-    <% if current_user.admin %>
-      <%= button_to("シャッフル", event_shuffle_path(@event), class: "btn btn-success") %>
-    <% end %>
+    <%= button_to("参加する", event_join_path(@event), class: "btn btn-info") %>
+  </li>
+  <% else %>
+    <li>
+      <%= button_to("参加済", event_drop_path(@event), class: "btn btn-info active", method: :delete)%>
+    </li>
+  <% if current_user.admin %>
+  <li>
+    <%= button_to("シャッフル", event_shuffle_path(@event), class: "btn btn-success") %>
   </li>
   <li class="nav-item" >
     <%= link_to("イベント編集", edit_event_path(@event), class:"nav-link") %>
   </li>
+  <% end %>
   <li class="nav-item">
     <%= link_to("新規トーク作成", new_event_talk_path(event_id: @event.id), class:"nav-link")  %>
   </li>
+    <% end %>
   <li class="nav-item">
     <%= link_to("一覧へもどる", events_path, class:"nav-link") %>
   </li>
@@ -30,10 +47,26 @@
        <%= link_to(talk.title,  talk_path(id: talk.id)) %>
      </td>
      <td>
-       <%= link_to(talk.user.name, user_path(talk.user)) %>
+       <%= link_to((current_user.id == talk.user_id)?"あなた":talk.user.name, user_path(talk.user)) %>
      </td>
    </tr>
     <% end %>
     </tbody>
   </table>
 
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>参加者</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @joins.each do |member| %>
+    <tr>
+      <td>
+        <%= link_to(member.user.name,  user_path(id: member.user.id)) %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
