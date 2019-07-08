@@ -15,6 +15,16 @@
       <td class="tententen">
         <%= user.status %>
       </td>
+      <% if current_user.admin %>
+      <td>
+        <%= link_to("削除", user, method: :delete, data:
+            { confirm: "こいつ何かやらかした？",
+              verify: "#{user.name}",
+              verify_text: "削除する場合はそいつのUsername打ってね",
+              cansel: "やめる",
+              commit: "消す"}, title: "確認") %>
+      </td>
+        <% end %>
     </tr>
   <% end %>
   </tbody>

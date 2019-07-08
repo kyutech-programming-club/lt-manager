@@ -52,7 +52,7 @@
        <%= link_to(talk.title,  talk_path(id: talk.id)) %>
      </td>
      <td>
-       <%= link_to((current_user.id == talk.user_id)?"あなた":talk.user.name, user_path(talk.user)) %>
+       <%= link_to(talk.user.name, user_path(talk.user)) %>
      </td>
    </tr>
     <% end %>

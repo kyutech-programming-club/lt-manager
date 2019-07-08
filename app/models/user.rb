@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
-  has_many :talks
-  has_many :user_events
-  has_many :events, through: :user_events
+  has_many :talks, dependent: :destroy
+  has_many :reviews, dependent: :destroy
+  has_many :user_events, dependent: :destroy
   validates :name, presence: true , uniqueness: true
 
 
