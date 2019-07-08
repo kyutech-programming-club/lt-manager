@@ -30,6 +30,10 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap', '>= 4.3.1'
 gem 'jquery-rails'
 
+#popup
+gem 'data-confirm-modal'
+
+
 gem 'rails-i18n'
 
 # Use ActiveStorage variant

@@ -14,7 +14,12 @@
   </li>
   <% else %>
     <li>
-      <%= button_to("参加済", event_drop_path(@event), class: "btn btn-info active", method: :delete)%>
+      <%= button_to("参加済", event_drop_path(@event), class: "btn btn-info active", method: :delete, data:
+                    { confirm: "本当に参加をやめますか？トークがある場合はそれも消えてしまい、感想なども消えてしまいます。",
+                     verify: "#{current_user.name}",
+                     verify_text: "削除する場合はUsernameを入力してください",
+                     cansel: "やめる",
+                     commit: "抜ける"}, title: "確認")%>
     </li>
   <% if current_user.admin %>
   <li>
