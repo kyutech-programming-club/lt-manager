@@ -11,21 +11,24 @@
   </div>
 <% end %>
 
-<p>(<%= link_to(@talk.event.title, event_path(@talk.event)) %>)</p>
+<p>イベント名 : <%= link_to(@talk.event.title, event_path(@talk.event)) %></p>
 <% unless @talk.slide_url.blank? %>
   <%= link_to("スライド", @talk.slide_url, target: "_blank") %>
 <% end %>
 <% unless @talk.movie_url.blank? %>
   <%= link_to("動画", @talk.movie_url, target: "_blank") %>
 <% end %>
-<p>発表者:<%= link_to((current_user.id == @talk.user_id)?"あなた":@talk.user.name, user_path(@talk.user)) %></p>
+<p>発表者:<%= link_to(@talk.user.name, user_path(@talk.user)) %></p>
 
 <br><br>
+
 <p>感想</p>
+<% unless UserEvent.where(user_id: current_user.id, event_id: @talk.event_id).empty? %>
 <% unless current_user.id == @talk.user_id %>
-<%=  form_with url: talk_reviews_path(talk_id: @talk.id) do |f|%>
-  <%= f.text_area :comment, style: "width: 400px, " %>
+<%=  form_with url: talk_reviews_path(talk_id: @talk.id) do |f| %>
+  <%= f.text_area :comment, style: "width: 400px" %>
   <%= f.submit "投稿", class: "btn btn-primary" %>
+<% end %>
 <% end %>
 <% end %>
 <ul>
