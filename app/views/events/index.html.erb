@@ -1,37 +1,128 @@
 <h1>LT一覧</h1>
-<%= link_to("新規作成", new_event_path) %>
-<table class="table table-hover">
+<% now = [] %>
+<% stock = [] %>
+<% old = [] %>
+<br>
+<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <%= link_to("新規作成", new_event_path, class: "btn btn-primary") %>
+  </li>
+</ul>
+<% @events.each do |event| %>
+  <% if event.start_time < @time and @time < event.end_time %>
+    <% now.push(event) %>
+  <% elsif @time > event.end_time %>
+    <% old.push(event) %>
+  <% else %>
+    <% stock.push(event) %>
+  <% end %>
+<% end %>
+
+<table class="table">
   <thead>
   <tr>
-    <th>タイトル</th>
-    <th>開催日</th>
-    <th>会場</th>
-    <th>参加者</th>
+    <th scope="col">タイトル</th>
+    <th scope="col">開催日</th>
+    <th scope="col">会場</th>
+    <th scope="col">参加者</th>
   </tr>
   </thead>
   <tbody>
-  <% @events.each do |event| %>
+  <% unless now.empty? %>
+    <tr class="table-danger">
+      <td colspan="4" style="color: #ff0000">
+        <b>開催中</b>
+      </td>
+    </tr>
+  <% now.each do |e| %>
     <tr>
       <td>
-        <%= link_to(event.title,  event_path(id: event.id)) %>
+        <%= link_to(e.title, e) %>
       </td>
       <td>
-        <%= event.start_time.strftime("%Y-%m-%d %H:%M:%S") %>~
-        <% if event.end_time.to_date == event.start_time.to_date %>
-            <%= event.end_time.strftime("%H:%M:%S")%>
-          <% else %>
-            <%= event.end_time.strftime("%Y-%m-%d %H:%M:%S")%>
-          <% end %>
+        <%= e.start_time.strftime("%Y-%m-%d %H:%M:%S") %>~
+        <% if e.end_time.to_date == e.start_time.to_date %>
+          <%= e.end_time.strftime("%H:%M:%S")%>
+        <% else %>
+          <%= e.end_time.strftime("%Y-%m-%d %H:%M:%S")%>
+        <% end %>
       </td>
       <td>
-        <%= event.location %>
+        <%= e.location %>
       </td>
       <td>
-        <%= UserEvent.where(event_id: event.id).count %>
+        <%= UserEvent.where(event_id: e.id).count %>
       </td>
     </tr>
   <% end %>
-    </tbody>
-    </table>
+  <% end %>
+
+  <tr>
+    <td colspan="4">
+
+    </td>
+  </tr>
+
+  <tr class="table-primary">
+    <td colspan="4">
+      開催予定
+    </td>
+  </tr>
+  <% stock.each do |e| %>
+    <tr>
+      <td>
+        <%= link_to(e.title, e) %>
+      </td>
+      <td>
+        <%= e.start_time.strftime("%Y-%m-%d %H:%M:%S") %>~
+        <% if e.end_time.to_date == e.start_time.to_date %>
+          <%= e.end_time.strftime("%H:%M:%S")%>
+        <% else %>
+          <%= e.end_time.strftime("%Y-%m-%d %H:%M:%S")%>
+        <% end %>
+      </td>
+      <td>
+        <%= e.location %>
+      </td>
+      <td>
+        <%= UserEvent.where(event_id: e.id).count %>
+      </td>
+      </tr>
+  <% end %>
+
+  <tr>
+    <td colspan="4">
+
+    </td>
+  </tr>
+
+  <tr class="table-dark">
+    <td colspan="4">
+      開催終了
+    </td>
+  </tr>
+  <% old.reverse.each do |e| %>
+    <tr>
+      <td>
+        <%= link_to(e.title, e) %>
+      </td>
+      <td>
+        <%= e.start_time.strftime("%Y-%m-%d %H:%M:%S") %>~
+        <% if e.end_time.to_date == e.start_time.to_date %>
+          <%= e.end_time.strftime("%H:%M:%S")%>
+        <% else %>
+          <%= e.end_time.strftime("%Y-%m-%d %H:%M:%S")%>
+        <% end %>
+      </td>
+      <td>
+        <%= e.location %>
+      </td>
+      <td>
+        <%= UserEvent.where(event_id: e.id).count %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
 
 

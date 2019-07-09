@@ -6,7 +6,8 @@ class EventsController < ApplicationController
   end
 
   def index
-    @events = Event.all.order(:id)
+    @events = Event.all.order(:start_time)
+    @time = Time.now
   end
 
   def show
