@@ -4,6 +4,7 @@ class TalksController < ApplicationController
 
   def show
     @talk = Talk.find(params[:id])
+    @talks = Talk.where(event_id: @talk.event_id)
     @review = Review.new(user_id: current_user.id, talk_id: @talk.id)
     @reviews =Review.where(talk_id: @talk.id)
   end
@@ -16,6 +17,7 @@ class TalksController < ApplicationController
     event = Event.find(params[:event_id])
     @talk = event.talks.build(talk_params)
     @talk.user_id = current_user.id
+    @talk.sequence = (Talk.where(event_id: event).length + 1)
     if @talk.save
       redirect_to event
     else
