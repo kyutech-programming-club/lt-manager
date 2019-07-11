@@ -18,7 +18,14 @@
 <% unless @talk.movie_url.blank? %>
   <%= link_to("動画", @talk.movie_url, target: "_blank") %>
 <% end %>
-<p>発表者:<%= link_to(@talk.user.name, user_path(@talk.user)) %></p>
+<p>
+  発表者:
+  <%= link_to(@talk.user.name, user_path(@talk.user)) %>
+  <% unless @talk == @talks.order(:sequence).last %>
+    &emsp;次の発表者はこちら〜
+    <%= link_to("次へ", @talks.find_by(sequence: (@talk.sequence + 1)), class: "btn btn-success") %>
+    <% end %>
+</p>
 
 <br><br>
 
@@ -41,3 +48,5 @@
   <% end %>
 <% end %>
 </ul>
+
+
