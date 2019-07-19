@@ -3,7 +3,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="container">
-    <%= link_to 'LT Manager', root_path, class: 'navbar-brand' %>
+    <%= link_to 'LT Manager', root_path, class: 'navbar-brand', title: "topへ", rel: "tooltip" %>
     <div class="collapse navbar-collapse justify-content-end">
       <ul class="navbar-nav">
         <% if current_user.nil? %>
