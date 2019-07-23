@@ -8,24 +8,30 @@
       <ul class="navbar-nav">
         <% if current_user.nil? %>
           <li class="nav-item">
-            <%= link_to 'Login', login_path, class: "nav-link" %>
+            <a class="nav-link" href="/login" title="login">
+              <i class="fas fa-sign-in-alt"></i>            </a>
           </li>
         <% else %>
           <li class="nav-item">
-            <%= link_to "陰キャ一覧", users_path, class: "nav-link" %>
+            <a class="nav-link" href="/users" title="陰キャ一覧">
+              <i class="fas fa-user-friends"></i>
+            </a>
           </li>
           <li class="nav-item">
-            <%= link_to "LT一覧", events_path, class: "nav-link" %>
+            <a class="nav-link" href="/events" title="LT一覧">
+              <i class="fas fa-chalkboard-teacher"></i>
+            </a>
           </li>
           <li class="nav-item">
             <%= link_to current_user.name, user_path(id: current_user), class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Logout', logout_path, method: :delete, class: "nav-link" %>
+            <a class="nav-link" href="/logout" data-method="delete" title="logout">
+              <i class="fas fa-sign-out-alt"></i>            </a>
           </li>
         <% end %>
         <li class="nav-item active">
-          <%= link_to "文句はこちら", "https://forms.gle/D8R2dc6E7rWfWg117", class: "nav-link", target: "_blank" %>
+          <%= link_to "文句はこちら", "https://forms.gle/D8R2dc6E7rWfWg117", class: "nav-link", target: "_blank", title: "え、製作者である柴田に匿名だからといって文句を言うんですか？直接言えば良いんじゃないんですか？" %>
         </li>
       </ul>
     </div>

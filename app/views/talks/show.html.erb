@@ -8,11 +8,14 @@
 <!--      <li><%#= link_to("編集", edit_talk_path, class: "dropdown-item") %></li>-->
 <!--      <li><%#= link_to("削除", talk_path(@talk), method: :delete, class: "dropdown-item", style: "color: #ff0000") %></li>-->
 <!--    </ul>-->
-    <%= link_to(edit_talk_path) do %>
-      <span class="fa fa-cog" style="font-size:30px; margin-right: 20px"></span>
+    <%= link_to(edit_talk_path, title: "トーク編集") do %>
+      <span class="fa fa-edit" style="font-size:30px; margin-right: 20px"></span>
     <% end %>
-    <%= link_to(talk_path(@talk), method: :delete) do %>
-      <span class="fa fa-trash" style="font-size: 30px; color:gray"></span>
+    <%= link_to(talk_path(@talk), method: :delete, title: "トーク削除",data:
+        { confirm: "本当にトークを消す？",
+          cansel: "やめる",
+          commit: "消す"}) do %>
+      <span class="fa fa-trash" style="font-size: 30px; color: gray"></span>
     <% end %>
   </div>
 <% end %>
@@ -27,11 +30,25 @@
 <p>
   発表者:
   <%= link_to(@talk.user.name, user_path(@talk.user)) %>
-  <% unless @talk == @talks.order(:sequence).last %>
-    &emsp;次の発表者はこちら〜
-    <%= link_to("次へ", @talks.find_by(sequence: (@talk.sequence + 1)), class: "btn btn-success") %>
-    <% end %>
 </p>
+&emsp;
+  <div style="color: gainsboro">
+    <% unless @talk == @talks.order(:sequence).first %>
+      <a href="/talks/<%= @talks.find_by(sequence: (@talk.sequence - 1)).id %>">
+        <i class="fas fa-chevron-circle-left"></i>前の発表
+      </a>
+    <% else %>
+      <i class="fas fa-chevron-circle-left"></i>前の発表
+    <% end %>
+    &emsp;
+    <% unless @talk == @talks.order(:sequence).last %>
+      <a href="/talks/<%= @talks.find_by(sequence: (@talk.sequence + 1)).id %>"  title="次の発表">
+        次の発表<i class="fas fa-chevron-circle-right"></i>
+      </a>
+    <% else %>
+      次の発表<i class="fas fa-chevron-circle-right"></i>
+  <% end %>
+  </div>
 
 <br><br>
 
