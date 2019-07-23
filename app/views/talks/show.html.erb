@@ -1,13 +1,19 @@
 <h1><%= @talk.title %></h1>
 <% if current_user.id == @talk.user_id %>
   <div class="dropdown", style="float: right">
-    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      トーク設定
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-      <li><%= link_to("編集", edit_talk_path, class: "dropdown-item") %></li>
-      <li><%= link_to("削除", talk_path(@talk), method: :delete, class: "dropdown-item", style: "color: #ff0000") %></li>
-    </ul>
+<!--    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
+<!--      トーク設定-->
+<!--    </button>-->
+<!--    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
+<!--      <li><%#= link_to("編集", edit_talk_path, class: "dropdown-item") %></li>-->
+<!--      <li><%#= link_to("削除", talk_path(@talk), method: :delete, class: "dropdown-item", style: "color: #ff0000") %></li>-->
+<!--    </ul>-->
+    <%= link_to(edit_talk_path) do %>
+      <span class="fa fa-cog" style="font-size:30px; margin-right: 20px"></span>
+    <% end %>
+    <%= link_to(talk_path(@talk), method: :delete) do %>
+      <span class="fa fa-trash" style="font-size: 30px; color:gray"></span>
+    <% end %>
   </div>
 <% end %>
 
