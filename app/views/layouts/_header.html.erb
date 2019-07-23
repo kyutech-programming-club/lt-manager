@@ -8,26 +8,28 @@
       <ul class="navbar-nav">
         <% if current_user.nil? %>
           <li class="nav-item">
-            <a class="nav-link" href="/login" title="login">
-              <i class="fas fa-sign-in-alt"></i>            </a>
+            <a class="nav-link" href="/login">
+              <i class="fas fa-sign-in-alt"> login</i>
+            </a>
           </li>
         <% else %>
           <li class="nav-item">
-            <a class="nav-link" href="/users" title="陰キャ一覧">
-              <i class="fas fa-user-friends"></i>
+            <a class="nav-link" href="/users">
+              <i class="fas fa-user-friends"> 陰キャ一覧</i>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/events" title="LT一覧">
-              <i class="fas fa-chalkboard-teacher"></i>
+            <a class="nav-link" href="/events">
+              <i class="fas fa-chalkboard-teacher"> LT一覧</i>
             </a>
           </li>
           <li class="nav-item">
             <%= link_to current_user.name, user_path(id: current_user), class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/logout" data-method="delete" title="logout">
-              <i class="fas fa-sign-out-alt"></i>            </a>
+            <a class="nav-link" href="/logout" data-method="delete">
+              <i class="fas fa-sign-out-alt"> logout</i>
+            </a>
           </li>
         <% end %>
         <li class="nav-item active">

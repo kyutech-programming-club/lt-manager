@@ -10,38 +10,36 @@
 <ul class="nav justify-content-end">
   <% if UserEvent.where(user_id: current_user.id, event_id: params[:id]).empty? %>
   <li>
-    <%= button_to("参加する", event_join_path(@event), class: "btn btn-info") %>
+    <%= button_to(event_join_path(@event), class: "btn btn-success nav-link") do %>
+      <i class="fas fa-user-plus">&emsp;参加する</i>
+    <% end %>
   </li>
   <% else %>
-    <li>
-      <%= button_to("参加済", event_drop_path(@event), class: "btn btn-info active", method: :delete, data:
+    <li class="nav-item">
+      <%= button_to(event_drop_path(@event), class:"btn btn-danger nav-link", method: :delete, data:
                     { confirm: "本当に参加をやめますか？トークがある場合はそれも消えてしまい、感想なども消えてしまいます。",
                      verify: "#{current_user.name}",
                      verify_text: "削除する場合はUsernameを入力してください",
                      cansel: "やめる",
-                     commit: "抜ける"}, title: "確認")%>
+                     commit: "抜ける"}, title: "抜ける") do%>
+        <i class="fas fa-user-minus" style="font-size: 20px"></i>
+      <% end %>
     </li>
+    &emsp;
   <% if current_user.admin %>
-  <li>
-    <%= button_to("シャッフル", event_shuffle_path(@event), class: "btn btn-success") %>
+  <li class="nav-item">
+    <%= button_to(event_shuffle_path(@event), class: "btn btn-success nav-link") do %>
+      <i class="fas fa-random">&emsp;シャッフル</i>
+    <% end %>
   </li>
+      &emsp;
   <li class="nav-item" >
-    <a class="nav-link" href="/events/<%= @event.id %>/edit" style="font-size: 20px" title="イベント編集">
-      <i class="fas fa-edit"></i>
-    </a>
+    <%= link_to(edit_event_path(@event), class: "btn btn-primary nav-link") do %>
+      <i class="fas fa-edit">イベント編集</i>
+    <% end %>
   </li>
   <% end %>
-  <li class="nav-item">
-    <a class="nav-link" href="/events/<%= @event.id %>/talks/new" style="font-size: 20px" title="陰キャ一覧">
-      <i class="fas fa-user-friends"></i>
-    </a>
-  </li>
-    <% end %>
-  <li class="nav-item">
-    <a class="nav-link" href="/events" style="font-size: 20px" title="陰キャ一覧">
-      <i class="fas fa-chevron-circle-left"></i>
-    </a>
-  </li>
+  <% end %>
 </ul>
 
   <table class="table table-hover">
@@ -62,13 +60,22 @@
      </td>
    </tr>
     <% end %>
+    <% unless UserEvent.where(user_id: current_user.id, event_id: params[:id]).empty? %>
+    <tr>
+      <td colspan="2", align="center">
+        <a href="/events/<%= @event.id %>/talks/new" style="font-size: 20px" title="トーク作成">
+          <i class="fas fa-plus"></i>
+        </a>
+      </td>
+    </tr>
+    <% end %>
     </tbody>
   </table>
 
 <table class="table table-hover">
   <thead>
   <tr>
-    <th>参加者</th>
+    <th>聞くだけ〜(・ ω ・ )</th>
   </tr>
   </thead>
   <tbody>
