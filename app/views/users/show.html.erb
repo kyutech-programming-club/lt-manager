@@ -5,7 +5,9 @@
 <ul class="nav justify-content-end">
   <% if current_user.id == @user.id %>
   <li class="nav-item">
-    <%= link_to("ユーザー編集", edit_user_path, class:"nav-link") %>
+    <a class="nav-link" href="/users/<%= @user.id %>/edit" style="font-size: 30px" title="ユーザー編集">
+      <i class="fas fa-user-edit"></i>
+    </a>
   </li>
     <% end %>
 </ul>

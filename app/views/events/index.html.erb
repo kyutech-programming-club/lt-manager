@@ -4,8 +4,10 @@
 <% old = [] %>
 <br>
 <ul class="nav justify-content-end">
-  <li class="nav-item">
-    <%= link_to("新規作成", new_event_path, class: "btn btn-primary") %>
+  <li class="nav-item" >
+    <%= link_to(new_event_path, class: "btn btn-primary nav-link") do %>
+      <i class="fas fa-plus-square">&emsp;イベント作成</i>
+    <% end %>
   </li>
 </ul>
 <% @events.each do |event| %>
