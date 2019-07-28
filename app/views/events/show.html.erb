@@ -26,19 +26,18 @@
       <% end %>
     </li>
     &emsp;
-  <% if current_user.admin %>
-  <li class="nav-item">
-    <%= button_to(event_shuffle_path(@event), class: "btn btn-success nav-link") do %>
-      <i class="fas fa-random">&emsp;シャッフル</i>
-    <% end %>
-  </li>
-      &emsp;
-  <li class="nav-item" >
-    <%= link_to(edit_event_path(@event), class: "btn btn-primary nav-link") do %>
-      <i class="fas fa-edit">イベント編集</i>
-    <% end %>
-  </li>
-  <% end %>
+    <% if current_user.admin %>
+      <li class="nav-item">
+        <%= button_to(event_shuffle_path(@event), class: "btn btn-success nav-link") do %>
+          <i class="fas fa-random">&emsp;シャッフル</i>
+        <% end %>
+      </li>
+    <% end %>    &emsp;
+      <li class="nav-item" >
+        <%= link_to(edit_event_path(@event), class: "btn btn-primary nav-link") do %>
+          <i class="fas fa-edit">イベント編集</i>
+        <% end %>
+      </li>
   <% end %>
 </ul>
 
