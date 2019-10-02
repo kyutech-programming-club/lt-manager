@@ -1,7 +1,5 @@
 <h1>LT一覧</h1>
-<% now = [] %>
-<% stock = [] %>
-<% old = [] %>
+
 <br>
 <ul class="nav justify-content-end">
   <li class="nav-item" >
@@ -12,11 +10,11 @@
 </ul>
 <% @events.each do |event| %>
   <% if event.start_time < @time and @time < event.end_time %>
-    <% now.push(event) %>
+    <% @now.push(event) %>
   <% elsif @time > event.end_time %>
-    <% old.push(event) %>
+    <% @old.push(event) %>
   <% else %>
-    <% stock.push(event) %>
+    <% @stock.push(event) %>
   <% end %>
 <% end %>
 
@@ -30,13 +28,13 @@
   </tr>
   </thead>
   <tbody>
-  <% unless now.empty? %>
+  <% unless @now.empty? %>
     <tr class="table-danger">
       <td colspan="4" style="color: #ff0000">
         <b>開催中</b>
       </td>
     </tr>
-  <% now.each do |e| %>
+  <% @now.each do |e| %>
     <tr>
       <td>
         <%= link_to(e.title, e) %>
@@ -70,7 +68,7 @@
       開催予定
     </td>
   </tr>
-  <% stock.each do |e| %>
+  <% @stock.each do |e| %>
     <tr>
       <td>
         <%= link_to(e.title, e) %>
@@ -103,7 +101,7 @@
       開催終了
     </td>
   </tr>
-  <% old.reverse.each do |e| %>
+  <% @old.reverse.each do |e| %>
     <tr>
       <td>
         <%= link_to(e.title, e) %>
