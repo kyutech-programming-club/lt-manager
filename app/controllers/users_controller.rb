@@ -27,7 +27,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @talks = @user.talks
+    @talks = @user.talks.order(event_id: "DESC")
   end
 
   def edit

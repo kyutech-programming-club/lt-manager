@@ -8,6 +8,9 @@ class EventsController < ApplicationController
   def index
     @events = Event.all.order(:start_time)
     @time = Time.now
+    @now = []
+    @stock = []
+    @old = []
   end
 
   def show
