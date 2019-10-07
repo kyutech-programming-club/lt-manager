@@ -1,13 +1,6 @@
 module TalksHelper
-  def modifyUrl(url){
 
-
-      return: url
-  }
-
-
-  end
-  def movie(url)
+    def movie(url)
     url["watch?v="] = "embed/"
     url[/&.*/] = ""
     iframe = content_tag(
@@ -20,5 +13,6 @@ module TalksHelper
         allowfullscreen: true
     )
     content_tag(:div, iframe, class: 'youtube-container')
-  end
+    end
+  
 end
