@@ -7,7 +7,7 @@ module TalksHelper
         elsif url.include?("youtu.be/")
             url["youtu.be/"] = "youtube.com/embed/"
         else
-            return "not youtube"
+            return false
         end
 
         if url.include?("&")
@@ -24,6 +24,7 @@ module TalksHelper
             allowfullscreen: true
         )
         content_tag(:div, iframe, class: 'youtube-container')
+
     end
 
 end
