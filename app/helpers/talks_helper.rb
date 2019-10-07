@@ -6,6 +6,8 @@ module TalksHelper
             url["watch?v="] = "embed/"
         elsif url.include?("youtu.be/")
             url["youtu.be/"] = "youtube.com/embed/"
+        else
+            return "not youtube"
         end
 
         if url.include?("&")

@@ -25,8 +25,12 @@
   <%= link_to("スライド", @talk.slide_url, target: "_blank") %>
 <% end %>
 <% unless @talk.movie_url.blank? %>
-  <%= link_to("動画", @talk.movie_url, target: "_blank") %>
-  <%= movie(@talk.movie_url) %>
+  <% if movie(@talk.movie_url) == "not youtube"%>
+    <%= link_to("動画(youtubeではないです)", @talk.movie_url, target: "_blank") %>
+  <% else %>
+    <%= link_to("動画", @talk.movie_url, target: "_blank") %>
+    <%= movie(@talk.movie_url) %>
+  <% end %>
 <% end %>
 <p>
   発表者:
