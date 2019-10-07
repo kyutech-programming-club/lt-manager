@@ -26,6 +26,7 @@
 <% end %>
 <% unless @talk.movie_url.blank? %>
   <%= link_to("動画", @talk.movie_url, target: "_blank") %>
+  <%= movie(@talk.movie_url) %>
 <% end %>
 <p>
   発表者:
