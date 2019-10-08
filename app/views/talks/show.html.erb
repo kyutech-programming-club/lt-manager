@@ -25,13 +25,11 @@
   <%= link_to("スライド", @talk.slide_url, target: "_blank") %>
 <% end %>
 <% unless @talk.movie_url.blank? %>
-  <% is_youtube = movie(@talk.movie_url) %>
-  <% if is_youtube %>
+  <% if youtube_link?(@talk.movie_url) %>
     <%= link_to("動画", @talk.movie_url, target: "_blank") %>
-    <%= is_youtube %>
+    <%= make_youtube_tag(@talk.movie_url) %>
   <% else %>
     <%= link_to("動画(youtube以外)", @talk.movie_url, target: "_blank") %>
-
   <% end %>
 <% end %>
 <p>

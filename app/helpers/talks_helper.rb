@@ -1,18 +1,28 @@
 module TalksHelper
 
-    def movie(url)
+    def youtube_link?(url)
 
-        if url.include?("youtube.com/watch?v=")
+        url.include?("youtube.com") || url.include?("youtu.be")
+
+    end
+
+    def parse_url_for_embed(url)
+
+        if url.include?("watch?v=")
             url["watch?v="] = "embed/"
         elsif url.include?("youtu.be/")
             url["youtu.be/"] = "youtube.com/embed/"
-        else
-            return false
         end
 
         if url.include?("&")
             url[/&.*/] = ""
         end
+
+    end
+
+    def make_youtube_tag(url)
+
+        parse_url_for_embed(url)
 
         iframe = content_tag(
             :iframe,
