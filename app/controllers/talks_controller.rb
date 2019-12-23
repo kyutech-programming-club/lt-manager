@@ -17,7 +17,7 @@ class TalksController < ApplicationController
     event = Event.find(params[:event_id])
     @talk = event.talks.build(talk_params)
     @talk.user_id = current_user.id
-    @talk.sequence = (Talk.where(event_id: event).length + 1)
+    @talk.sequence = Talk.where(event_id: event).order(:sequence).last.sequence + 1
     if @talk.save
       redirect_to event
     else
