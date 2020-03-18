@@ -68,12 +68,10 @@
 <% end %>
 <ul>
 <% @reviews.each do |review| %>
-  <% if current_user.id == review.user_id %>
-    <li><%= review.comment %>
-      <%= link_to("削除", review, method: :delete) %></li>
-  <% else %>
-    <li><%= review.comment %></li>
-  <% end %>
+  <li>
+    <%= review.comment %>
+    <%= link_to("削除", review, method: :delete) if current_user.id == review.user_id %>
+  </li>
 <% end %>
 </ul>
 
