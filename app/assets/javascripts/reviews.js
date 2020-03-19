@@ -1,6 +1,6 @@
 $(function() {
   function make_review_template(review) {
-    return `<li class="review" data-id="${review.id}">\
+    return `<li class="review new_review" data-id="${review.id}">\
               ${review.comment}\
             </li>`;
   }
