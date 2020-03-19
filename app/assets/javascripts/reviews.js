@@ -23,7 +23,8 @@ $(function() {
       },
       dataType: 'json'
     })
-    .always(function(data) {
+    .done(function(data) {
+      if (Object.keys(data).length === 0) return;
       $.each(data.reverse(), function(i, data) {
         build_new_review(data);
       });
