@@ -68,11 +68,13 @@
 <% end %>
 <ul>
 <% @reviews.each do |review| %>
-  <li>
+  <li class="review" data-id="<%= review.id %>">
     <%= review.comment %>
     <%= link_to("削除", review, method: :delete) if current_user.id == review.user_id %>
   </li>
 <% end %>
 </ul>
-
-
+<style>
+.review{
+}
+</style>
