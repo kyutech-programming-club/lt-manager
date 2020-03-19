@@ -7,6 +7,11 @@ class TalksController < ApplicationController
     @talks = Talk.where(event_id: @talk.event_id)
     @review = Review.new(user_id: current_user.id, talk_id: @talk.id)
     @reviews =Review.where(talk_id: @talk.id)
+
+    respond_to do |format|
+      format.html
+      format.json { @new_reviews = Review.where('id > ?', params[:review][:id]) }
+    end
   end
 
   def new
