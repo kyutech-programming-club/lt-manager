@@ -10,7 +10,9 @@ class TalksController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { @new_reviews = Review.where('id > ?', params[:review][:id]) }
+      format.json {
+        @new_reviews = Review.where('id > ? and talk_id = ?', params[:review][:id], @talk.id)
+      }
     end
   end
 
