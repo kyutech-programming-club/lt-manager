@@ -76,5 +76,27 @@
 </ul>
 <style>
 .review {
+  animation: reviewspawn 1s linear 0s 1 forwards;
+
+  -webkit-animation: reviewspawn 1s linear 0s 1 forwards;
+
+}
+
+@keyframes reviewspawn {
+    0% { background-color: rgba(0, 128, 255, 1) }
+   20% { background-color: rgba(0, 128, 255, 0.8) }
+   40% { background-color: rgba(0, 128, 255, 0.6) }
+   60% { background-color: rgba(0, 128, 255, 0.4) }
+   80% { background-color: rgba(0, 128, 255, 0.2) }
+  100% { background-color: rgba(0, 128, 255, 0) }
+}
+
+@-webkit-keyframes reviewspawn {
+    0% { background-color: rgba(0, 128, 255, 1) }
+   20% { background-color: rgba(0, 128, 255, 0.8) }
+   40% { background-color: rgba(0, 128, 255, 0.6) }
+   60% { background-color: rgba(0, 128, 255, 0.4) }
+   80% { background-color: rgba(0, 128, 255, 0.2) }
+  100% { background-color: rgba(0, 128, 255, 0) }
 }
 </style>
