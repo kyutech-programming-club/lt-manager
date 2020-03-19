@@ -6,7 +6,7 @@ class TalksController < ApplicationController
     @talk = Talk.find(params[:id])
     @talks = Talk.where(event_id: @talk.event_id)
     @review = Review.new(user_id: current_user.id, talk_id: @talk.id)
-    @reviews =Review.where(talk_id: @talk.id)
+    @reviews =Review.where(talk_id: @talk.id).reverse_order
 
     respond_to do |format|
       format.html

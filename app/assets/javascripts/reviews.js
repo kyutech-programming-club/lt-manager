@@ -6,7 +6,7 @@ $(function() {
   }
 
   function build_new_review(review) {
-    let reviews = $('#review-list').append(make_review_template(review));
+    let reviews = $('#review-list').prepend(make_review_template(review));
   }
 
   $(function() {
@@ -14,7 +14,7 @@ $(function() {
   });
 
   function update() {
-    let latest_review_id = $('.review')[0] ? $('.review:last').data('id') : 0;
+    let latest_review_id = $('.review')[0] ? $('.review:first').data('id') : 0;
     $.ajax({
       url: location.href,
       type: 'GET',
@@ -24,7 +24,7 @@ $(function() {
       dataType: 'json'
     })
     .always(function(data) {
-      $.each(data, function(i, data) {
+      $.each(data.reverse(), function(i, data) {
         build_new_review(data);
       });
     });
