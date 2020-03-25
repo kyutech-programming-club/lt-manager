@@ -66,15 +66,42 @@
 <% end %>
 <% end %>
 <% end %>
-<ul>
+<ul id="review-list">
 <% @reviews.each do |review| %>
-  <% if current_user.id == review.user_id %>
-    <li><%= review.comment %>
-      <%= link_to("削除", review, method: :delete) %></li>
-  <% else %>
-    <li><%= review.comment %></li>
-  <% end %>
+  <li class="review" data-id="<%= review.id %>">
+    <%= review.comment %>
+    <%= link_to("削除", review, method: :delete) if current_user.id == review.user_id %>
+  </li>
 <% end %>
 </ul>
+<style>
+.review {
+  border: solid 3px white;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 
+.new_review {
+  animation: reviewspawn 1s linear 0s 1 forwards;
+  -webkit-animation: reviewspawn 1s linear 0s 1 forwards;
+}
 
+@keyframes reviewspawn {
+    0% { border-color: rgba(0, 180, 255, 1) }
+   20% { border-color: rgba(0, 180, 255, 0.8) }
+   40% { border-color: rgba(0, 180, 255, 0.6) }
+   60% { border-color: rgba(0, 180, 255, 0.4) }
+   80% { border-color: rgba(0, 180, 255, 0.2) }
+  100% { border-color: rgba(0, 180, 255, 0) }
+}
+
+@-webkit-keyframes reviewspawn {
+    0% { border-color: rgba(0, 180, 255, 1) }
+   20% { border-color: rgba(0, 180, 255, 0.8) }
+   40% { border-color: rgba(0, 180, 255, 0.6) }
+   60% { border-color: rgba(0, 180, 255, 0.4) }
+   80% { border-color: rgba(0, 180, 255, 0.2) }
+  100% { border-color: rgba(0, 128, 255, 0) }
+}
+</style>
